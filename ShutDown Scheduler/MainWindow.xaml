@@ -1,0 +1,203 @@
+﻿<Window x:Class="ShutDown_Scheduler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShutDown_Scheduler"
+        xmlns:viewmodel="clr-namespace:ShutDown_Scheduler.MVVM.ViewModel"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="400"
+        ResizeMode="NoResize" Background="Gray" WindowStartupLocation="CenterScreen">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                  CornerRadius="15"
+                  GlassFrameThickness="5" />
+    </WindowChrome.WindowChrome>
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Rectangle x:Name="drag"
+                   Fill="Transparent"
+                   Width="auto"
+                   MouseLeftButtonDown="drag_MouseLeftButtonDown"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Grid.Row="3"
+                    Content="⨽"
+                    Padding="0"
+                    FontSize="20"
+                    Width="30"/>
+            
+            <Button x:Name="btn_minimise" Grid.Row="3"
+                    Content="◱"
+                    Padding="0"
+                    FontSize="20"
+                    Width="30"
+                    Click="btn_minimise_Click"/>
+            <Button x:Name="btn_exit" Grid.Row="3"
+                    Content="X"
+                    Padding="0"
+                    FontSize="20"
+                    Width="30"
+                    Click="btn_exit_Click"/>
+        </StackPanel>
+        <Label Grid.Row="1"
+               Content="shutdown in.." 
+               FontSize="25"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+
+        
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnHoursUp" 
+                        Height="20"
+                        Command="{Binding HoursUpCommand}"/>
+
+                <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_hours"
+                                    DefaultValue="0"
+                                    DisplayDefaultValueOnEmptyText="True"
+                                    Minimum="0"
+                                    Maximum="99"
+                                    Value="{Binding Hours}"
+                                    Text="{Binding Hours}"
+                                    ShowButtonSpinner="False"
+                                    MouseWheelActiveTrigger="MouseOver"
+                                    UpdateValueOnEnterKey="False"
+                                    PreviewTextInput="iup_hours_PreviewTextInput"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    FontSize="30"
+                                    Width="70"/>
+
+                <Button Grid.Row="2" 
+                        x:Name="btnHoursdown"
+                        Height="20"
+                        Command="{Binding HoursDownCommand}"/>
+            </Grid>
+            
+            <Label Content=":"
+                   FontSize="24"
+                   Padding="5,0"
+                   VerticalAlignment="Center"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnMinutesUp" 
+                        Height="20"
+                        Command="{Binding MinutesUpCommand}"/>
+                <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_minutes"
+                                    DefaultValue="0"
+                                    ClipValueToMinMax="True"
+                                    DisplayDefaultValueOnEmptyText="True"
+                                    Minimum="0"
+                                    Maximum="59"
+                                    Value="{Binding Minutes}"
+                                    Text="{Binding Minutes}"
+                                    ShowButtonSpinner="False"
+                                    MouseWheelActiveTrigger="MouseOver"
+                                    UpdateValueOnEnterKey="False"
+                                    PreviewTextInput="iup_minutes_PreviewTextInput"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    FontSize="30"
+                                    Width="70"/>
+                <Button Grid.Row="2" 
+                        x:Name="btnMinutesDown"
+                        Height="20"
+                        Command="{Binding MinutesDownCommand}"/>
+            </Grid>
+            <Label Content=":"
+                   FontSize="24"
+                   Padding="5,0"
+                   VerticalAlignment="Center"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="btnSecondsUp" 
+                        Height="20"
+                        Command="{Binding SecondsUpCommand}"/>
+                <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_seconds"
+                                    DefaultValue="0"
+                                    ClipValueToMinMax="True"
+                                    DisplayDefaultValueOnEmptyText="True"
+                                    Minimum="0"
+                                    Maximum="59"
+                                    Value="{Binding Seconds}"
+                                    MouseWheelActiveTrigger="MouseOver"
+                                    Text="{Binding Seconds}"
+                                    UpdateValueOnEnterKey="False"
+                                    ShowButtonSpinner="False"
+                                    PreviewTextInput="iup_seconds_PreviewTextInput"
+                                    VerticalContentAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    FontSize="30"
+                                    Width="70"/>
+                <Button Grid.Row="2" 
+                        x:Name="btnSecondsDown"
+                        Height="20"
+                        Command="{Binding SecondsDownCommand}"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button Margin="0,5,0,5"
+                    Content="Abort"
+                    FontSize="24"
+                    HorizontalAlignment="Center"
+                    Command="{Binding AbortCommand}"
+                    Width="90"/>
+            <Button Margin="0,5,0,5"
+                    Content="Shutdown"
+                    FontSize="24"
+                    HorizontalAlignment="Center"
+                    Command="{Binding ShutdownCommand}"
+                    Width="130"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="4"
+                    HorizontalAlignment="Center">
+            <Label Content="Computer will shutdown in.." 
+                   FontSize="20"
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Center"/>
+            <Label Content="00:05:30" 
+                   FontSize="20"
+                   VerticalAlignment="Top" 
+                   HorizontalAlignment="Center"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>
