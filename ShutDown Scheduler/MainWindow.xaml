@@ -72,13 +72,15 @@
 
                 <Button x:Name="btnHoursUp" 
                         Height="20"
+                        IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding HoursUpCommand}"/>
 
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_hours"
                                     DefaultValue="0"
                                     DisplayDefaultValueOnEmptyText="True"
-                                    Minimum="0"
-                                    Maximum="99"
+                                    Minimum="-1"
+                                    Maximum="100"
+                                    IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Hours}"
                                     Text="{Binding Hours}"
                                     ShowButtonSpinner="False"
@@ -93,6 +95,7 @@
                 <Button Grid.Row="2" 
                         x:Name="btnHoursdown"
                         Height="20"
+                        IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding HoursDownCommand}"/>
             </Grid>
             
@@ -109,13 +112,15 @@
 
                 <Button x:Name="btnMinutesUp" 
                         Height="20"
+                        IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding MinutesUpCommand}"/>
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_minutes"
                                     DefaultValue="0"
                                     ClipValueToMinMax="True"
                                     DisplayDefaultValueOnEmptyText="True"
-                                    Minimum="0"
-                                    Maximum="59"
+                                    Minimum="-1"
+                                    Maximum="60"
+                                    IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Minutes}"
                                     Text="{Binding Minutes}"
                                     ShowButtonSpinner="False"
@@ -129,6 +134,7 @@
                 <Button Grid.Row="2" 
                         x:Name="btnMinutesDown"
                         Height="20"
+                        IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding MinutesDownCommand}"/>
             </Grid>
             <Label Content=":"
@@ -145,16 +151,19 @@
 
                 <Button x:Name="btnSecondsUp" 
                         Height="20"
+                        IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding SecondsUpCommand}"/>
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_seconds"
                                     DefaultValue="0"
                                     ClipValueToMinMax="True"
                                     DisplayDefaultValueOnEmptyText="True"
-                                    Minimum="0"
-                                    Maximum="59"
+                                    Minimum="-1"
+                                    Maximum="60"
+                                    IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Seconds}"
                                     MouseWheelActiveTrigger="MouseOver"
                                     Text="{Binding Seconds}"
+                                    AutoMoveFocus="True"
                                     UpdateValueOnEnterKey="False"
                                     ShowButtonSpinner="False"
                                     PreviewTextInput="iup_seconds_PreviewTextInput"
@@ -165,6 +174,7 @@
                 <Button Grid.Row="2" 
                         x:Name="btnSecondsDown"
                         Height="20"
+                        IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding SecondsDownCommand}"/>
             </Grid>
         </StackPanel>
@@ -193,7 +203,7 @@
                    FontSize="20"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Center"/>
-            <Label Content="00:05:30" 
+            <Label Content="{Binding UpdateLabel}" 
                    FontSize="20"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Center"/>

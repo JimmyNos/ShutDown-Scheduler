@@ -31,7 +31,23 @@ namespace ShutDown_Scheduler
 
         private void btn_exit_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            
+            var result = MessageBox.Show
+                (
+                    "Closing the app will not cancel the shutdown and will not remember the coundtown time on reopen.",
+                    "Warning",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Exclamation,
+                    MessageBoxResult.OK
+                );
+
+            //MessageBox.Show(result.ToString());
+
+            if (result.ToString() == "OK")
+            {
+                Application.Current.Shutdown();
+            }
+
         }
 
         private void btn_minimise_Click(object sender, RoutedEventArgs e)
