@@ -55,6 +55,12 @@ namespace ShutDown_Scheduler
             this.WindowState = WindowState.Minimized;
         }
 
+        private void btn_trayIcon_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+            Hide();
+        }
+
         private static readonly Regex _regex = new Regex("^[0-9]+$");
 
         private void iup_seconds_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -71,5 +77,7 @@ namespace ShutDown_Scheduler
         {
             e.Handled = !_regex.IsMatch(e.Text);
         }
+
+        
     }
 }

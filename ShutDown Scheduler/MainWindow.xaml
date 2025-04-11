@@ -34,11 +34,12 @@
                    MouseLeftButtonDown="drag_MouseLeftButtonDown"/>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button Grid.Row="3"
+            <Button x:Name="btn_trayIcon" Grid.Row="3"
                     Content="⨽"
                     Padding="0"
                     FontSize="20"
-                    Width="30"/>
+                    Width="30"
+                    Click="btn_trayIcon_Click"/>
             
             <Button x:Name="btn_minimise" Grid.Row="3"
                     Content="◱"
