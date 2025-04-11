@@ -25,6 +25,14 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
         [ObservableProperty]
         private bool isUpDownEnable;
 
+        [ObservableProperty]
+        private Visibility updateLabelVisibility;
+
+        [ObservableProperty]
+        private Visibility countdownLabelVisibility;
+
+
+
         public int remainingHours;
 
         public int remainingMinutes;
@@ -66,8 +74,6 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
             else if (Hours == -1)
                 Hours = 99;
 
-
-
             CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
 
             return CountdownLabel;
@@ -79,6 +85,8 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
             IsUpDownEnable = true;
             CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
 
+            UpdateLabelVisibility = Visibility.Visible;
+            CountdownLabelVisibility = Visibility.Collapsed;
         }
 
         [RelayCommand]
@@ -164,28 +172,27 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
                 CreateNoWindow = true
             };
 
-            using (Process process = Process.Start(processStartInfo)) 
+            using Process process = Process.Start(processStartInfo);
+            if (process != null)
             {
-                if(process != null)
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                //process.WaitForExit();
+
+                if (error == null)
                 {
-                    string output = process.StandardOutput.ReadToEnd();
-                    string error = process.StandardError.ReadToEnd();
-
-                    process.WaitForExit();
-
-                    if (error != null)
-                    {
-                        //MessageBox.Show("Shutdown aborted");
-                        isAbort = true;
-                        IsUpDownEnable = true;
-                        CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
-
-                    }
-                    else
-                        MessageBox.Show(error);
-
-                    //MessageBox.Show($"output: {output}\nerror{error}");
+                    //MessageBox.Show("Shutdown aborted");
+                    isAbort = true;
+                    IsUpDownEnable = true;
+                    CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
+                    UpdateLabelVisibility = Visibility.Visible;
+                    CountdownLabelVisibility = Visibility.Collapsed;
                 }
+                else if (error.Length > 0) 
+                    MessageBox.Show(error);
+
+                //MessageBox.Show($"output: {output}\nerror{error}");
             }
             //MessageBox.Show($"aborting shutdown");
 
@@ -195,7 +202,7 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
         private void Shutdown() 
         {
             countdown = CountdownTime(Seconds, Minutes, Hours);
-            MessageBox.Show($"will shutdown in {Hours},{Minutes},{Seconds}");
+            //MessageBox.Show($"will shutdown in {Hours},{Minutes},{Seconds}");
 
             //Process.Start("shutdown", $"/s /f /t {countdown}");
             ProcessStartInfo processStartInfo = new ProcessStartInfo
@@ -208,29 +215,29 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
                 CreateNoWindow = true
             };
 
-            using (Process process = Process.Start(processStartInfo))
+            using Process process = Process.Start(processStartInfo);
+            if (process != null)
             {
-                if (process != null)
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                process.WaitForExit();
+
+                if (error == null)
                 {
-                    string output = process.StandardOutput.ReadToEnd();
-                    string error = process.StandardError.ReadToEnd();
-
-                    process.WaitForExit();
-
-                    if (error != null)
-                    {
-                        //MessageBox.Show("Shutdown Scheduled");
-                        isAbort = false;
-                        IsUpDownEnable = false;
-                        Task.Run(Countdown);
-                    }
-                    else
-                        MessageBox.Show(error);
-
-                    //MessageBox.Show($"output: {output}\nerror{error}");
+                    //MessageBox.Show("Shutdown Scheduled");
+                    isAbort = false;
+                    IsUpDownEnable = false;
+                    UpdateLabelVisibility = Visibility.Collapsed;
+                    CountdownLabelVisibility = Visibility.Visible;
+                    Task.Run(Countdown);
                 }
+                else
+                    MessageBox.Show(error);
+
+                //MessageBox.Show($"output: {output}\nerror{error}");
             }
-            
+
         }
 
         public int CountdownTime(int seconds, int minutes, int hours)

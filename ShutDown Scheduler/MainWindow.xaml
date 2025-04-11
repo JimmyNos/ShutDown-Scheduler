@@ -77,6 +77,7 @@
 
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_hours"
                                     DefaultValue="0"
+                                    TextAlignment="Center"
                                     DisplayDefaultValueOnEmptyText="True"
                                     Minimum="-1"
                                     Maximum="100"
@@ -116,6 +117,7 @@
                         Command="{Binding MinutesUpCommand}"/>
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_minutes"
                                     DefaultValue="0"
+                                    TextAlignment="Center"
                                     ClipValueToMinMax="True"
                                     DisplayDefaultValueOnEmptyText="True"
                                     Minimum="-1"
@@ -159,6 +161,7 @@
                                     DisplayDefaultValueOnEmptyText="True"
                                     Minimum="-1"
                                     Maximum="60"
+                                    TextAlignment="Center"
                                     IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Seconds}"
                                     MouseWheelActiveTrigger="MouseOver"
@@ -203,10 +206,19 @@
                    FontSize="20"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Center"/>
-            <Label Content="{Binding UpdateLabel}" 
-                   FontSize="20"
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Center"/>
+            <Grid>
+                <Label Content="{Binding UpdateLabel}" 
+                       FontSize="20"
+                       VerticalAlignment="Top" 
+                       Visibility="{Binding UpdateLabelVisibility}"
+                       HorizontalAlignment="Center"/>
+                <Label Content="{Binding CountdownLabel}" 
+                       FontSize="20"
+                       VerticalAlignment="Top"
+                       Visibility="{Binding CountdownLabelVisibility}"
+                       HorizontalAlignment="Center"/>
+            </Grid>
+            
         </StackPanel>
         
     </Grid>
