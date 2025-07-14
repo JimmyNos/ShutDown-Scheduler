@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using Hardcodet.Wpf.TaskbarNotification;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -10,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static ShutDown_Scheduler.App;
 
 namespace ShutDown_Scheduler
 {
@@ -18,17 +22,34 @@ namespace ShutDown_Scheduler
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        
         public MainWindow()
         {
             InitializeComponent();
+            WeakReferenceMessenger.Default.Register<ShowMainWindowMessage>(this, (_, _) => ShowAndRestore());
         }
 
+        // show the main window when the app is started or when the tray icon is clicked
+        private void ShowAndRestore()
+        {
+            this.Show();
+            if (this.WindowState == WindowState.Minimized)
+                this.WindowState = WindowState.Normal;
 
+            this.Activate();
+            this.Topmost = true;
+            this.Topmost = false;
+            this.Focus();
+        }
+
+        // drag the window around
         private void drag_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
 
+        // close the app
         private void btn_exit_Click(object sender, RoutedEventArgs e)
         {
             
@@ -50,15 +71,19 @@ namespace ShutDown_Scheduler
 
         }
 
+        // minimise the app
         private void btn_minimise_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
 
-        private void btn_trayIcon_Click(object sender, RoutedEventArgs e)
+        // minimise the app to system tray
+        private void btn_systemTray_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
             Hide();
+
+            
         }
 
         private static readonly Regex _regex = new Regex("^[0-9]+$");

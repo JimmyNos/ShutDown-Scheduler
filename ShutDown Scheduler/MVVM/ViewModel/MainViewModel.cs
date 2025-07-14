@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System.Diagnostics;
 using System.Windows;
+using static ShutDown_Scheduler.App;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ShutDown_Scheduler.MVVM.ViewModel
 {
@@ -21,6 +24,9 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
         [ObservableProperty]
         private string countdownLabel;
+
+        [ObservableProperty]
+        private string shutdownlabel = "shutdown in..";
 
         [ObservableProperty]
         private bool isUpDownEnable;
@@ -87,6 +93,9 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
             UpdateLabelVisibility = Visibility.Visible;
             CountdownLabelVisibility = Visibility.Collapsed;
+
+            WeakReferenceMessenger.Default.Register<AbortShutdownMessage>(this, (_, _) => SysTrayAbort());
+            WeakReferenceMessenger.Default.Register<ExitAppMessage>(this, (_, _) => SysTrayExitApp());
         }
 
         [RelayCommand]
@@ -158,6 +167,36 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
         public int countdown;
         public bool isAbort = false;
 
+        // exit command from the system tray icon
+        [RelayCommand]
+        private void SysTrayExitApp()
+        {
+            //Abort();
+            var result = MessageBox.Show
+                (
+                    "Closing the app will not cancel the shutdown and will not remember the coundtown time on reopen.",
+                    "Warning",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Exclamation,
+                    MessageBoxResult.OK
+                );
+
+            //MessageBox.Show(result.ToString());
+
+            if (result.ToString() == "OK")
+            {
+                Application.Current.Shutdown();
+            }
+        }
+
+        // abort shutdown command from the system tray icon
+        [RelayCommand]
+        private void SysTrayAbort()
+        {
+            Abort();
+        }
+
+        // abort shutdown command
         [RelayCommand]
         private void Abort()
         {
@@ -180,24 +219,43 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
                 //process.WaitForExit();
 
-                if (error == null)
+                isAbort = true;
+                IsUpDownEnable = true;
+                CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
+                UpdateLabelVisibility = Visibility.Visible;
+                CountdownLabelVisibility = Visibility.Collapsed;
+                if (error != null)
                 {
-                    //MessageBox.Show("Shutdown aborted");
+                    if(error.Contains("(1116)"))
+                    {
+                        Shutdownlabel = "No Shutdown Scheduled";
+                    }
+                    else
+                        Shutdownlabel = "Shutdown Aborted";
                     isAbort = true;
-                    IsUpDownEnable = true;
-                    CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
-                    UpdateLabelVisibility = Visibility.Visible;
-                    CountdownLabelVisibility = Visibility.Collapsed;
-                }
-                else if (error.Length > 0) 
-                    MessageBox.Show(error);
+                    //var result = MessageBox.Show
+                    //(
+                    //    error,
+                    //    "Warning",
+                    //    MessageBoxButton.OK,
+                    //    MessageBoxImage.Exclamation,
+                    //    MessageBoxResult.OK
+                    //);
 
+                    ////MessageBox.Show(result.ToString());
+
+                    //if (result.ToString() == "OK")
+                    //{
+                    //    isAbort = true;
+                    //}
+                }
                 //MessageBox.Show($"output: {output}\nerror{error}");
             }
             //MessageBox.Show($"aborting shutdown");
 
         }
 
+        // shutdown command
         [RelayCommand]
         private void Shutdown() 
         {
@@ -223,23 +281,25 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
                 process.WaitForExit();
 
-                if (error == null)
+                isAbort = false;
+                IsUpDownEnable = false;
+                UpdateLabelVisibility = Visibility.Collapsed;
+                CountdownLabelVisibility = Visibility.Visible;
+                Task.Run(Countdown);
+                if (error != null)
                 {
-                    //MessageBox.Show("Shutdown Scheduled");
-                    isAbort = false;
-                    IsUpDownEnable = false;
-                    UpdateLabelVisibility = Visibility.Collapsed;
-                    CountdownLabelVisibility = Visibility.Visible;
-                    Task.Run(Countdown);
+                    if (error.Contains("(1190)"))
+                    {
+                        Shutdownlabel = "Shutdown Already Scheduled";
+                    }
+                    else
+                        Shutdownlabel = "Shutdown Scheduled";
                 }
-                else
-                    MessageBox.Show(error);
-
-                //MessageBox.Show($"output: {output}\nerror{error}");
             }
 
         }
 
+        // calculate the total countdown time in seconds
         public int CountdownTime(int seconds, int minutes, int hours)
         {
             hours = hours * 3600;
@@ -255,7 +315,7 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
                 return totalSeconds;
         }
 
-
+        // countdown method
         public async Task Countdown()
         {
             for (int second = countdown; second >= 0; second--)

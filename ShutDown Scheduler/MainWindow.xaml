@@ -8,7 +8,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="400"
-        ResizeMode="NoResize" Background="Gray" WindowStartupLocation="CenterScreen">
+        ResizeMode="NoResize" Background="#303030" WindowStartupLocation="CenterScreen">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
@@ -28,35 +28,45 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+
+        
+
         <Rectangle x:Name="drag"
-                   Fill="Transparent"
-                   Width="auto"
-                   MouseLeftButtonDown="drag_MouseLeftButtonDown"/>
+               Fill="Gray"
+               Width="auto"
+               MouseLeftButtonDown="drag_MouseLeftButtonDown"/>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <Button x:Name="btn_trayIcon" Grid.Row="3"
+            <Button x:Name="btn_systemTray" Grid.Row="3"
                     Content="⨽"
                     Padding="0"
                     FontSize="20"
+                    BorderThickness="0"
+                    Background="White"
                     Width="30"
-                    Click="btn_trayIcon_Click"/>
+                    Click="btn_systemTray_Click"/>
             
             <Button x:Name="btn_minimise" Grid.Row="3"
                     Content="◱"
                     Padding="0"
                     FontSize="20"
                     Width="30"
+                    BorderThickness="0"
+                    Background="White"
                     Click="btn_minimise_Click"/>
             <Button x:Name="btn_exit" Grid.Row="3"
                     Content="X"
                     Padding="0"
                     FontSize="20"
+                    BorderThickness="0"
+                    Background="White"
                     Width="30"
                     Click="btn_exit_Click"/>
         </StackPanel>
         <Label Grid.Row="1"
-               Content="shutdown in.." 
+               Content="{Binding Shutdownlabel}" 
                FontSize="25"
+               Foreground="WhiteSmoke"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"/>
 
@@ -73,6 +83,10 @@
 
                 <Button x:Name="btnHoursUp" 
                         Height="20"
+                        Content="▲"
+                        Foreground="WhiteSmoke"
+                        Background="Transparent"
+                        BorderThickness="0"
                         IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding HoursUpCommand}"/>
 
@@ -82,6 +96,9 @@
                                     DisplayDefaultValueOnEmptyText="True"
                                     Minimum="-1"
                                     Maximum="100"
+                                    Foreground="WhiteSmoke"
+                                    Background="Transparent"
+                                    BorderThickness="0"
                                     IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Hours}"
                                     Text="{Binding Hours}"
@@ -97,12 +114,17 @@
                 <Button Grid.Row="2" 
                         x:Name="btnHoursdown"
                         Height="20"
+                        Content="▼"
+                        Foreground="WhiteSmoke"
+                        Background="Transparent"
+                        BorderThickness="0"
                         IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding HoursDownCommand}"/>
             </Grid>
             
             <Label Content=":"
                    FontSize="24"
+                   Foreground="WhiteSmoke"
                    Padding="5,0"
                    VerticalAlignment="Center"/>
             <Grid>
@@ -114,6 +136,10 @@
 
                 <Button x:Name="btnMinutesUp" 
                         Height="20"
+                        Content="▲"
+                        Foreground="WhiteSmoke"
+                        BorderThickness="0"
+                        Background="Transparent"
                         IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding MinutesUpCommand}"/>
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_minutes"
@@ -123,6 +149,9 @@
                                     DisplayDefaultValueOnEmptyText="True"
                                     Minimum="-1"
                                     Maximum="60"
+                                    Foreground="WhiteSmoke"
+                                    Background="Transparent"
+                                    BorderThickness="0"
                                     IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Minutes}"
                                     Text="{Binding Minutes}"
@@ -137,11 +166,16 @@
                 <Button Grid.Row="2" 
                         x:Name="btnMinutesDown"
                         Height="20"
+                        Content="▼"
+                        Foreground="WhiteSmoke"
+                        Background="Transparent"
+                        BorderThickness="0"
                         IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding MinutesDownCommand}"/>
             </Grid>
             <Label Content=":"
                    FontSize="24"
+                   Foreground="WhiteSmoke"
                    Padding="5,0"
                    VerticalAlignment="Center"/>
 
@@ -154,6 +188,10 @@
 
                 <Button x:Name="btnSecondsUp" 
                         Height="20"
+                        Content="▲"
+                        Foreground="WhiteSmoke"
+                        Background="Transparent"
+                        BorderThickness="0"
                         IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding SecondsUpCommand}"/>
                 <xctk:IntegerUpDown Grid.Row="1" x:Name="iup_seconds"
@@ -162,6 +200,9 @@
                                     DisplayDefaultValueOnEmptyText="True"
                                     Minimum="-1"
                                     Maximum="60"
+                                    Foreground="WhiteSmoke"
+                                    Background="Transparent"
+                                    BorderThickness="0"
                                     TextAlignment="Center"
                                     IsEnabled="{Binding IsUpDownEnable}"
                                     Value="{Binding Seconds}"
@@ -178,6 +219,10 @@
                 <Button Grid.Row="2" 
                         x:Name="btnSecondsDown"
                         Height="20"
+                        Content="▼"
+                        Foreground="WhiteSmoke"
+                        Background="Transparent"
+                        BorderThickness="0"
                         IsEnabled="{Binding IsUpDownEnable}"
                         Command="{Binding SecondsDownCommand}"/>
             </Grid>
@@ -186,15 +231,21 @@
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Button Margin="0,5,0,5"
+            <Button Margin="0,5,5,5"
                     Content="Abort"
                     FontSize="24"
+                    Foreground="WhiteSmoke"
+                    BorderThickness="0"
+                    Background="#6E6E6E"
                     HorizontalAlignment="Center"
                     Command="{Binding AbortCommand}"
                     Width="90"/>
             <Button Margin="0,5,0,5"
                     Content="Shutdown"
                     FontSize="24"
+                    Foreground="WhiteSmoke"
+                    BorderThickness="0"
+                    Background="#6E6E6E"
                     HorizontalAlignment="Center"
                     Command="{Binding ShutdownCommand}"
                     Width="130"/>
@@ -205,11 +256,13 @@
                     HorizontalAlignment="Center">
             <Label Content="Computer will shutdown in.." 
                    FontSize="20"
+                   Foreground="WhiteSmoke"
                    VerticalAlignment="Top" 
                    HorizontalAlignment="Center"/>
             <Grid>
                 <Label Content="{Binding UpdateLabel}" 
                        FontSize="20"
+                       Foreground="WhiteSmoke"
                        VerticalAlignment="Top" 
                        Visibility="{Binding UpdateLabelVisibility}"
                        HorizontalAlignment="Center"/>
