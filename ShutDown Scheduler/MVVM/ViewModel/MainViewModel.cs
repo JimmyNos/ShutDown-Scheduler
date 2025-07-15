@@ -12,15 +12,15 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(UpdateLabel))]
-        private int seconds;
+        private int seconds = 0;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(UpdateLabel))]
-        private int minutes;
+        private int minutes = 0;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(UpdateLabel))]
-        private int hours;
+        private int hours = 0;
 
         [ObservableProperty]
         private string countdownLabel;

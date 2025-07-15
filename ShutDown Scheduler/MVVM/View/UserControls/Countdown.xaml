@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="ShutDown_Scheduler.MVVM.View.Countdown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShutDown_Scheduler.MVVM.View"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             Background="Transparent"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="250">
+
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnHoursUp" 
+                        Height="20"
+                        Content="▲"
+                        Foreground="#d1d1d1"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding CountHoursUp, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        IsEnabled="{Binding CountIsUpDownEnable}"/>
+
+                <Button Grid.Column="2" x:Name="btnMinutesUp" 
+                        Height="20"
+                        Content="▲"
+                        Foreground="#d1d1d1"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Command="{Binding CountMinutesUp}"
+                        IsEnabled="{Binding CountIsUpDownEnable}"/>
+
+                <Button Grid.Column="4" x:Name="btnSecondsUp" 
+                        Height="20"
+                        Content="▲"
+                        Foreground="#d1d1d1"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding CountSecondsUp}"
+                        IsEnabled="{Binding CountIsUpDownEnable}"/>
+
+            </Grid>
+
+            <Border CornerRadius="5"
+                    Background="#0d0d0d"
+                    BorderBrush="#797979"
+                    BorderThickness="1"
+                    Margin="0,0,0,0">
+                <Grid Height="60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="19.5"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="19.5"/>
+                        <ColumnDefinition Width="70"/>
+                    </Grid.ColumnDefinitions>
+
+                    <xctk:IntegerUpDown x:Name="iup_hours"
+                                        DefaultValue="0"
+                                        ClipValueToMinMax="True"
+                                        DisplayDefaultValueOnEmptyText="True"
+                                        Minimum="-1"
+                                        Maximum="100"
+                                        Foreground="#d1d1d1"
+                                        Background="Transparent"
+                                        BorderThickness="2"
+                                        BorderBrush="Transparent"
+                                        FontWeight="Bold"
+                                        TextAlignment="Center"
+                                        IsEnabled="{Binding CountIsUpDownEnable}"
+                                        Value="{Binding CountHours}"
+                                        AutoMoveFocus="True"
+                                        MouseWheelActiveTrigger="MouseOver"
+                                        UpdateValueOnEnterKey="False"
+                                        ShowButtonSpinner="False"
+                                        ButtonSpinnerLocation="Left"
+                                        PreviewTextInput="iup_hours_PreviewTextInput"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        FontSize="30"
+                                        Height="auto"
+                                        Width="70"
+                                        Style="{StaticResource AnimatedIntegerUpDownStyle}"/>
+
+
+                    <Label Grid.Column="1" Content=":"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center"
+                           Foreground="#d1d1d1"
+                           Padding="5,0"
+                           VerticalAlignment="Center"/>
+
+                    <xctk:IntegerUpDown Grid.Column="2" x:Name="iup_minutes"
+                                        DefaultValue="0"
+                                        ClipValueToMinMax="True"
+                                        DisplayDefaultValueOnEmptyText="True"
+                                        Minimum="-1"
+                                        Maximum="60"
+                                        Foreground="#d1d1d1"
+                                        Background="Transparent"
+                                        BorderThickness="2"
+                                        BorderBrush="Transparent"
+                                        FontWeight="Bold"
+                                        TextAlignment="Center"
+                                        IsEnabled="{Binding CountIsUpDownEnable}"
+                                        Value="{Binding CountMinutes, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        AutoMoveFocus="True"
+                                        MouseWheelActiveTrigger="MouseOver"
+                                        UpdateValueOnEnterKey="False"
+                                        ShowButtonSpinner="False"
+                                        ButtonSpinnerLocation="Left"
+                                        PreviewTextInput="iup_minutes_PreviewTextInput"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        FontSize="30"
+                                        Height="auto"
+                                        Width="70"
+                                        Style="{StaticResource AnimatedIntegerUpDownStyle}"/>
+
+                    <Label Grid.Column="3" Content=":"
+                           FontSize="24"
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Center"
+                           Foreground="#d1d1d1"
+                           FontWeight="Bold"
+                           Padding="5,0"
+                           VerticalAlignment="Center"/>
+
+                    <xctk:IntegerUpDown Grid.Column="4" x:Name="iup_seconds"
+                                        DefaultValue="0"
+                                        ClipValueToMinMax="True"
+                                        DisplayDefaultValueOnEmptyText="True"
+                                        Minimum="-1"
+                                        Maximum="60"
+                                        Foreground="#d1d1d1"
+                                        Background="Transparent"
+                                        BorderThickness="2"
+                                        BorderBrush="Transparent"
+                                        FontWeight="Bold"
+                                        TextAlignment="Center"
+                                        IsEnabled="{Binding CountIsUpDownEnable}"
+                                        Value="{Binding CountSeconds, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        AutoMoveFocus="True"
+                                        MouseWheelActiveTrigger="MouseOver"
+                                        UpdateValueOnEnterKey="False"
+                                        ShowButtonSpinner="False"
+                                        ButtonSpinnerLocation="Left"
+                                        PreviewTextInput="iup_seconds_PreviewTextInput"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalContentAlignment="Center"
+                                        FontSize="30"
+                                        Height="auto"
+                                        Width="70"
+                                        Style="{StaticResource AnimatedIntegerUpDownStyle}"/>
+                    
+                </Grid>
+
+            </Border>
+
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="btnHoursdown"
+                        Height="20"
+                        Content="▼"
+                        Foreground="#d1d1d1"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding CountHoursDw}"
+                        IsEnabled="{Binding CountIsUpDownEnable}"/>
+
+                <Button Grid.Column="2" 
+                        x:Name="btnMinutesDown"
+                        Height="20"
+                        Content="▼"
+                        Foreground="#d1d1d1"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding CountMinutesDw}"
+                        IsEnabled="{Binding CountIsUpDownEnable}"/>
+
+                <Button Grid.Column="4" 
+                        x:Name="btnSecondsDown"
+                        Height="20"
+                        Content="▼"
+                        Foreground="#d1d1d1"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding CountSecondsDw}"
+                        IsEnabled="{Binding CountIsUpDownEnable}"/>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

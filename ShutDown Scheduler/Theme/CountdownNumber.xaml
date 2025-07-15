@@ -1,0 +1,54 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+    <Style TargetType="{x:Type xctk:IntegerUpDown}" x:Key="AnimatedIntegerUpDownStyle">
+        <Setter Property="DefaultValue" Value="0"/>
+        <Setter Property="ClipValueToMinMax" Value="True"/>
+        <Setter Property="Background" Value="#0d0d0d"/>
+        <Setter Property="Foreground" Value="#d1d1d1"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="ShowButtonSpinner" Value="False"/> 
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="DisplayDefaultValueOnEmptyText" Value="True"/>
+        <Setter Property="MouseWheelActiveTrigger" Value="MouseOver"/>
+        <Setter Property="AutoMoveFocus" Value="True"/>
+        <Setter Property="UpdateValueOnEnterKey" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="Width" Value="70"/>
+        <Setter Property="Height" Value="auto"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                            To="#2a2a2a"
+                            Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                            To="#0d0d0d"
+                            Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#838383"/> 
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Foreground" Value="#d1d1d1"/> 
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

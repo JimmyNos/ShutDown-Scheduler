@@ -29,7 +29,7 @@ namespace ShutDown_Scheduler
             InitializeComponent();
             WeakReferenceMessenger.Default.Register<ShowMainWindowMessage>(this, (_, _) => ShowAndRestore());
         }
-
+        
         // show the main window when the app is started or when the tray icon is clicked
         private void ShowAndRestore()
         {

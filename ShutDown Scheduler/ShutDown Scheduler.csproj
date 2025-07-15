@@ -21,9 +21,7 @@
 
   <ItemGroup>
     <Folder Include="MVVM\Model\" />
-    <Folder Include="MVVM\View\" />
     <Folder Include="Resrouces\" />
-    <Folder Include="Theme\" />
   </ItemGroup>
 
   <ItemGroup>
