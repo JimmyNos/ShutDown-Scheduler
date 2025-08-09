@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>shutdown-icon-11823-Windows.ico</ApplicationIcon>
+    <AssemblyName>ShutDownSchedulerApp</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
