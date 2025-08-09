@@ -7,10 +7,15 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>shutdown-icon-11823-Windows.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\Icons\shutdown-icon-11823-Windows.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="shutdown-icon-11823-Windows.ico" />
   </ItemGroup>
 
   <ItemGroup>

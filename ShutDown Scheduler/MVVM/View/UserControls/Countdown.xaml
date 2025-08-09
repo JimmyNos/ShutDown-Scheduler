@@ -11,6 +11,7 @@
              d:DesignHeight="100" d:DesignWidth="250">
 
     <Grid>
+        
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center">
 
@@ -23,29 +24,20 @@
                     <ColumnDefinition Width="70"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnHoursUp" 
-                        Height="20"
                         Content="▲"
-                        Foreground="#d1d1d1"
-                        Background="Transparent"
-                        BorderThickness="0"
+                        Style="{StaticResource UpDownButtonStyle}"
                         Command="{Binding CountHoursUp, RelativeSource={RelativeSource AncestorType=UserControl}}"
                         IsEnabled="{Binding CountIsUpDownEnable}"/>
 
                 <Button Grid.Column="2" x:Name="btnMinutesUp" 
-                        Height="20"
                         Content="▲"
-                        Foreground="#d1d1d1"
-                        BorderThickness="0"
-                        Background="Transparent"
+                        Style="{StaticResource UpDownButtonStyle}"
                         Command="{Binding CountMinutesUp}"
                         IsEnabled="{Binding CountIsUpDownEnable}"/>
 
                 <Button Grid.Column="4" x:Name="btnSecondsUp" 
-                        Height="20"
                         Content="▲"
-                        Foreground="#d1d1d1"
-                        Background="Transparent"
-                        BorderThickness="0"
+                        Style="{StaticResource UpDownButtonStyle}"
                         Command="{Binding CountSecondsUp}"
                         IsEnabled="{Binding CountIsUpDownEnable}"/>
 
@@ -64,6 +56,13 @@
                         <ColumnDefinition Width="19.5"/>
                         <ColumnDefinition Width="70"/>
                     </Grid.ColumnDefinitions>
+
+                    <Border Grid.ColumnSpan="5" x:Name="b_grayedOut"
+                            Background="#50000000"
+                            CornerRadius="4"
+                            Width="240"
+                            Height="50"
+                            Panel.ZIndex="{Binding CZIndex}"/>
 
                     <xctk:IntegerUpDown x:Name="iup_hours"
                                         DefaultValue="0"
@@ -99,6 +98,7 @@
                            HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Center"
                            Foreground="#d1d1d1"
+                           Height="60"
                            Padding="5,0"
                            VerticalAlignment="Center"/>
 
@@ -135,6 +135,7 @@
                            VerticalContentAlignment="Center"
                            Foreground="#d1d1d1"
                            FontWeight="Bold"
+                           Height="60"
                            Padding="5,0"
                            VerticalAlignment="Center"/>
 
@@ -180,31 +181,22 @@
                 </Grid.ColumnDefinitions>
                 
                 <Button x:Name="btnHoursdown"
-                        Height="20"
                         Content="▼"
-                        Foreground="#d1d1d1"
-                        Background="Transparent"
-                        BorderThickness="0"
+                        Style="{StaticResource UpDownButtonStyle}"
                         Command="{Binding CountHoursDw}"
                         IsEnabled="{Binding CountIsUpDownEnable}"/>
 
                 <Button Grid.Column="2" 
                         x:Name="btnMinutesDown"
-                        Height="20"
                         Content="▼"
-                        Foreground="#d1d1d1"
-                        Background="Transparent"
-                        BorderThickness="0"
+                        Style="{StaticResource UpDownButtonStyle}"
                         Command="{Binding CountMinutesDw}"
                         IsEnabled="{Binding CountIsUpDownEnable}"/>
 
                 <Button Grid.Column="4" 
                         x:Name="btnSecondsDown"
-                        Height="20"
                         Content="▼"
-                        Foreground="#d1d1d1"
-                        Background="Transparent"
-                        BorderThickness="0"
+                        Style="{StaticResource UpDownButtonStyle}"
                         Command="{Binding CountSecondsDw}"
                         IsEnabled="{Binding CountIsUpDownEnable}"/>
 

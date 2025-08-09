@@ -21,6 +21,18 @@ namespace ShutDown_Scheduler.MVVM.View
     /// </summary>
     public partial class Countdown : UserControl
     {
+        public int CZIndex
+        {
+            get => (int)GetValue(CZIndexProperty);
+            set => SetValue(CZIndexProperty, value);
+        }
+        public static readonly DependencyProperty CZIndexProperty =
+            DependencyProperty.Register(
+                nameof(CZIndex),
+                typeof(int),
+                typeof(Countdown),
+                new PropertyMetadata(0, OnCountHoursChanged));
+
         public ICommand CountHoursUp
         {
             get => (ICommand)GetValue(CountHoursUpProperty);
@@ -149,17 +161,6 @@ namespace ShutDown_Scheduler.MVVM.View
             {
                 // Trigger Update whenever CountHours changes
                 countdown.Update();
-                // Raise PropertyChanged for UpdateLabel if you're binding to it
-                //countdown.OnPropertyChanged(nameof(UpdateLabel));
-            }
-        }
-
-        private static void OnSecondsUpChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Countdown countdown)
-            {
-                // Trigger Update whenever CountHours changes
-                countdown.SecondsUp();
                 // Raise PropertyChanged for UpdateLabel if you're binding to it
                 //countdown.OnPropertyChanged(nameof(UpdateLabel));
             }

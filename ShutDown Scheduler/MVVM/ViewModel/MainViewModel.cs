@@ -32,6 +32,9 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
         private bool isUpDownEnable;
 
         [ObservableProperty]
+        private int countZIndex;
+
+        [ObservableProperty]
         private Visibility updateLabelVisibility;
 
         [ObservableProperty]
@@ -89,6 +92,7 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
         public MainViewModel()
         {
             IsUpDownEnable = true;
+            CountZIndex = 0;
             CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
 
             UpdateLabelVisibility = Visibility.Visible;
@@ -171,22 +175,8 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
         [RelayCommand]
         private void SysTrayExitApp()
         {
-            //Abort();
-            var result = MessageBox.Show
-                (
-                    "Closing the app will not cancel the shutdown and will not remember the coundtown time on reopen.",
-                    "Warning",
-                    MessageBoxButton.OKCancel,
-                    MessageBoxImage.Exclamation,
-                    MessageBoxResult.OK
-                );
-
-            //MessageBox.Show(result.ToString());
-
-            if (result.ToString() == "OK")
-            {
-                Application.Current.Shutdown();
-            }
+            // Close application
+            Application.Current.Shutdown();
         }
 
         // abort shutdown command from the system tray icon
@@ -221,6 +211,7 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
                 isAbort = true;
                 IsUpDownEnable = true;
+                CountZIndex = 0;
                 CountdownLabel = $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
                 UpdateLabelVisibility = Visibility.Visible;
                 CountdownLabelVisibility = Visibility.Collapsed;
@@ -283,6 +274,7 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
                 isAbort = false;
                 IsUpDownEnable = false;
+                CountZIndex = 1;
                 UpdateLabelVisibility = Visibility.Collapsed;
                 CountdownLabelVisibility = Visibility.Visible;
                 Task.Run(Countdown);
@@ -307,9 +299,10 @@ namespace ShutDown_Scheduler.MVVM.ViewModel
 
             int totalSeconds = (hours + minutes + seconds);
 
+            // default to 500 seconds if no time is set (during development)
             if (totalSeconds == 0)
             {
-                return 500;
+                return 0; //500; 
             }
             else
                 return totalSeconds;

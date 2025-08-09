@@ -44,10 +44,7 @@
                 </Trigger.ExitActions>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="#838383"/> 
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="True">
-                <Setter Property="Foreground" Value="#d1d1d1"/> 
+                <Setter Property="Background" Value="Red"/>
             </Trigger>
         </Style.Triggers>
     </Style>
