@@ -18,6 +18,7 @@ Perfect for saving energy, managing work hours, or letting your PC finish tasks 
 - **Cancel or reschedule** shutdowns easily
 - Runs quietly in the background without hogging system resources.
   - can be minimized or moved to system try
+> NOTE: closing the Application will not cancel the scheduled shutdown and will not remender the countdown on reopen.
   
 ---
 
