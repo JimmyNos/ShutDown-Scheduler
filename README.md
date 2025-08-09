@@ -8,6 +8,7 @@
 ## Overview
 **Shutdown Scheduler** is a lightweight Windows desktop application that allows you to set a countdown timer to automaticlly shutdown your computer.
 Perfect for saving energy, managing work hours, or letting your PC finish tasks before turning itself off.
+<img width="397" height="295" alt="ShutDown-Scheduler-ui" src="https://github.com/user-attachments/assets/4835f016-e229-4672-bd52-6a3007127d93" />
 
 ---
 
@@ -19,7 +20,19 @@ Perfect for saving energy, managing work hours, or letting your PC finish tasks 
 - Runs quietly in the background without hogging system resources.
   - can be minimized or moved to system try
 > NOTE: closing the Application will not cancel the scheduled shutdown and will not remender the countdown on reopen.
-  
+
+
+> UI Example
+> 
+![ui showcase](https://github.com/user-attachments/assets/820074d9-76f1-41a7-8190-1e5fe97ec24e)
+> ShutDown and Abort alerts
+> 
+![notifications showcase](https://github.com/user-attachments/assets/51c0dd06-cd97-4ce0-96b8-d53ebc234b43)
+> Systray example
+> 
+![systray showcase](https://github.com/user-attachments/assets/0e77e020-fae2-4117-a209-be86fb319c51)
+
+
 ---
 
 ## Installation
