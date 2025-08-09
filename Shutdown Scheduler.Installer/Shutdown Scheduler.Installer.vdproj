@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0523D2D0C6304CECA3DB71B6922B1D35"
+        "MsmKey" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -158,7 +158,7 @@
             {
             "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
@@ -183,7 +183,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Shutdown Scheduler App"
         "ProductCode" = "8:{95F783D7-94AD-463E-A033-9A70C6F3F61F}"
-        "PackageCode" = "8:{0D69EBD2-4EA8-4186-9E89-93B7320AB616}"
+        "PackageCode" = "8:{7281F4A8-9461-4276-AB9E-59E5A2DA0D93}"
         "UpgradeCode" = "8:{EA456153-FD2C-4AE1-9618-61ABEE7808C3}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -200,7 +200,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:A lightweight Windows desktop application that lets you schedule a time for your computer to automatically shut down."
         "ARPURLINFOABOUT" = "8:https://github.com/JimmyNos/ShutDown-Scheduler"
-        "ARPPRODUCTICON" = "8:_0523D2D0C6304CECA3DB71B6922B1D35"
+        "ARPPRODUCTICON" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
         "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -303,21 +303,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_440651C61FDE43C0A1D83CF4EA2683A1"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5852CAF4662540D1804F1206659676B1"
             {
-            "Name" = "8:ShutDown Scheduler App"
+            "Name" = "8:Shortcut to %sPublish Items from ShutDown Scheduler (Active)"
             "Arguments" = "8:"
-            "Description" = "8:Shortcut for ShutDown Scheduler App"
+            "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_6A2E37E55F4B49D5A06F893C0B29571A"
-            "Folder" = "8:_6A2E37E55F4B49D5A06F893C0B29571A"
-            "WorkingFolder" = "8:_6A2E37E55F4B49D5A06F893C0B29571A"
-            "Icon" = "8:_0523D2D0C6304CECA3DB71B6922B1D35"
+            "Target" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
+            "Folder" = "8:_D4A675894B234298967320C7203A4DAD"
+            "WorkingFolder" = "8:_D4A675894B234298967320C7203A4DAD"
+            "Icon" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_950B224BD5384F6E893D4A5AB6946CAD"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C4CA042358ED4444ABCE882D98E45A75"
             {
             "Name" = "8:ShutDown Scheduler App"
             "Arguments" = "8:"
@@ -325,10 +325,24 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_47DEE01B32D04859A4556030601D6A6B"
+            "Target" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
             "Folder" = "8:_47DEE01B32D04859A4556030601D6A6B"
-            "WorkingFolder" = "8:_47DEE01B32D04859A4556030601D6A6B"
-            "Icon" = "8:_0523D2D0C6304CECA3DB71B6922B1D35"
+            "WorkingFolder" = "8:_D4A675894B234298967320C7203A4DAD"
+            "Icon" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E7D919B9A06A4984AE3BEEE3FA9F4861"
+            {
+            "Name" = "8:ShutDown Scheduler App"
+            "Arguments" = "8:"
+            "Description" = "8:Shortcut for ShutDown Scheduler App"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
+            "Folder" = "8:_6A2E37E55F4B49D5A06F893C0B29571A"
+            "WorkingFolder" = "8:_D4A675894B234298967320C7203A4DAD"
+            "Icon" = "8:_E17C8EC96D2B4E28B09A96B50520EC80"
             "Feature" = "8:"
             }
         }
@@ -730,9 +744,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_0523D2D0C6304CECA3DB71B6922B1D35"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E17C8EC96D2B4E28B09A96B50520EC80"
             {
-            "SourcePath" = "8:..\\ShutDown Scheduler\\obj\\Debug\\net9.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\ShutDown Scheduler\\obj\\Release\\net9.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D4A675894B234298967320C7203A4DAD"
