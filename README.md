@@ -36,7 +36,7 @@ Perfect for saving energy, managing work hours, or letting your PC finish tasks 
 ---
 
 ## Installation
-- Download the latest release from the [Releases]([link](https://github.com/JimmyNos/ShutDown-Scheduler/releases/tag/v1.0)) page.
+- Download the latest release from the [Releases](https://github.com/JimmyNos/ShutDown-Scheduler/releases/tag/v1.0) page.
 - Extract the `.zip` file to your preferred location.
 - Run `ShutDownScheduler.exe`.
   - you can create a shortcut
