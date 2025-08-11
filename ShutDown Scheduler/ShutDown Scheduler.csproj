@@ -12,10 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Icons\shutdown-icon-11823-Windows.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="shutdown-icon-11823-Windows.ico" />
   </ItemGroup>
 
@@ -31,14 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Icons\shutdown-icon-11823-Windows.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Update="Resources\Icons\shutdown-icon-11823-Windows.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Icons\ShutdownIcon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

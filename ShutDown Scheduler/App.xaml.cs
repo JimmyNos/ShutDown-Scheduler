@@ -38,7 +38,7 @@ namespace ShutDown_Scheduler
 
             _trayIcon = new TaskbarIcon
             {
-                Icon = new System.Drawing.Icon("C:/Users/Micha/source/repos/ShutDown Scheduler/ShutDown Scheduler/Resources/Icons/shutdown-icon-11823-Windows.ico"),
+                Icon = new System.Drawing.Icon("./Resources/Icons/shutdown-icon-11823-Windows.ico"),
                 ToolTipText = "My App",
                 ContextMenu = contextMenu
             };
